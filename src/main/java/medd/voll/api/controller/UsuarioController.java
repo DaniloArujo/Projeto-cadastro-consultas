@@ -34,7 +34,7 @@ public class UsuarioController {
         usuario.atualizarInformacoes(dados);
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     @Transactional
     public void excluir(@PathVariable Long id){
         var usuario = repository.getReferenceById(id);

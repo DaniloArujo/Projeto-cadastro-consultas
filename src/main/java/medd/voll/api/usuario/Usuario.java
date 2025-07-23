@@ -2,6 +2,8 @@ package medd.voll.api.usuario;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,12 +21,16 @@ public class Usuario {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String nome;
 
+    @NotBlank
     private  String email;
 
+    @NotBlank
     private  String telefone;
 
+    @NotBlank
     private  String cpf;
 
     @Embedded
@@ -41,5 +47,22 @@ public class Usuario {
         this.endereco = new Endereco(dados.endereco());
         this.ativo = true;
 
+    }
+
+    public void atualizarInformacoes(@Valid DadosAtualizaUsuario dados) {
+        if(dados.nome() != null){
+            this.nome = dados.nome();
+        }
+        if(dados.telefone() != null){
+            this.telefone = dados.telefone();
+        }
+        if(dados.endereco() != null){
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
+
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }

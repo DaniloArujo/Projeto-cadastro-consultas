@@ -3,6 +3,7 @@ package medd.voll.api.usuario;
 
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -25,6 +26,7 @@ public class Usuario {
     private String nome;
 
     @NotBlank
+    @Email
     private  String email;
 
     @NotBlank

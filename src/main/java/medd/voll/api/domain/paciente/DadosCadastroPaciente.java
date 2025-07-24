@@ -1,4 +1,4 @@
-package medd.voll.api.domain.usuario;
+package medd.voll.api.domain.paciente;
 
 import medd.voll.api.domain.endereco.DadosEndereco;
 

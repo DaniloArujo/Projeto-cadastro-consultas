@@ -1,4 +1,4 @@
-package medd.voll.api.domain.usuario;
+package medd.voll.api.domain.paciente;
 
 
 import jakarta.persistence.*;
@@ -67,4 +67,6 @@ public class Usuario {
     public void excluir() {
         this.ativo = false;
     }
+
+    public void ativar() { this.ativo = true; }
 }

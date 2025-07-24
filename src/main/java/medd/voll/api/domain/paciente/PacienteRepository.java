@@ -1,4 +1,4 @@
-package medd.voll.api.domain.usuario;
+package medd.voll.api.domain.paciente;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

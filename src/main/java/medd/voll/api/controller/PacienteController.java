@@ -1,7 +1,7 @@
 package medd.voll.api.controller;
 
 import jakarta.validation.Valid;
-import medd.voll.api.domain.usuario.*;
+import medd.voll.api.domain.paciente.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -53,6 +53,14 @@ public class UsuarioController {
     @GetMapping("/{id}")
     public ResponseEntity detalhar(@PathVariable Long id){
         var usuario = repository.getReferenceById(id);
+        return ResponseEntity.ok(new DadosDetalhamentoUsuario(usuario));
+    }
+
+    @PutMapping("/ativar/{id}")
+    @Transactional
+    public ResponseEntity ativar(@PathVariable Long id){
+        var usuario = repository.getReferenceById(id);
+        usuario.ativar();
         return ResponseEntity.ok(new DadosDetalhamentoUsuario(usuario));
     }
 

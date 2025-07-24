@@ -1,4 +1,4 @@
-package medd.voll.api.domain.usuario;
+package medd.voll.api.domain.paciente;
 
 import jakarta.validation.constraints.NotNull;
 import medd.voll.api.domain.endereco.DadosEndereco;

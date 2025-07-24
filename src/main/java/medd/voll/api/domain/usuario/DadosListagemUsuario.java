@@ -1,4 +1,4 @@
-package medd.voll.api.usuario;
+package medd.voll.api.domain.usuario;
 
 public record DadosListagemUsuario(
         Long id,

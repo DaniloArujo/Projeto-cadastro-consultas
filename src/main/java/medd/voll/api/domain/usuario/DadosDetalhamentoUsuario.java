@@ -1,6 +1,6 @@
-package medd.voll.api.usuario;
+package medd.voll.api.domain.usuario;
 
-import medd.voll.api.endereco.Endereco;
+import medd.voll.api.domain.endereco.Endereco;
 
 public record DadosDetalhamentoUsuario(
 

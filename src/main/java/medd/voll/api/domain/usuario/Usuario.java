@@ -1,61 +1,67 @@
-package medd.voll.api.medico;
+package medd.voll.api.domain.usuario;
 
 
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import medd.voll.api.endereco.Endereco;
+import medd.voll.api.domain.endereco.Endereco;
 
-@Table(name="medicos")
-@Entity(name = "medico")
+@Table(name="usuarios")
+@Entity(name = "usuario")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Medico {
+public class Usuario {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
-    private String email;
-    private String telefone;
-    private String crm;
 
-    @Enumerated(EnumType.STRING)
-    private Especialidade especialidade;
+    @NotBlank
+    private String nome;
+
+    @NotBlank
+    @Email
+    private  String email;
+
+    @NotBlank
+    private  String telefone;
+
+    @NotBlank
+    private  String cpf;
 
     @Embedded
-    private Endereco endereco;
+    private  Endereco endereco;
 
     private Boolean ativo;
 
+    public Usuario(DadosCadastroUsuario dados) {
 
-    public Medico(DadosCadastroMedico dados) {
         this.nome = dados.nome();
         this.email = dados.email();
-        this.crm = dados.crm();
         this.telefone = dados.telefone();
-        this.especialidade = dados.especialidade();
+        this.cpf = dados.cpf();
         this.endereco = new Endereco(dados.endereco());
         this.ativo = true;
+
     }
 
-    public void atualizarInformacoes(@Valid DadosAtualizarMedico dados) {
-
+    public void atualizarInformacoes(@Valid DadosAtualizaUsuario dados) {
         if(dados.nome() != null){
             this.nome = dados.nome();
         }
-
-        if(dados.telefone() != null) {
+        if(dados.telefone() != null){
             this.telefone = dados.telefone();
         }
-
-        if(dados.endereco() != null) {
+        if(dados.endereco() != null){
             this.endereco.atualizarInformacoes(dados.endereco());
         }
+
     }
 
     public void excluir() {

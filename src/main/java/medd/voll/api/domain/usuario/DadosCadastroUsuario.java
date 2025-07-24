@@ -1,7 +1,6 @@
-package medd.voll.api.usuario;
+package medd.voll.api.domain.usuario;
 
-import medd.voll.api.endereco.DadosEndereco;
-import medd.voll.api.endereco.Endereco;
+import medd.voll.api.domain.endereco.DadosEndereco;
 
 public record DadosCadastroUsuario(
 

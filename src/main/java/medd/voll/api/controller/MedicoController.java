@@ -2,7 +2,7 @@ package medd.voll.api.controller;
 
 
 import jakarta.validation.Valid;
-import medd.voll.api.medico.*;
+import medd.voll.api.domain.medico.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

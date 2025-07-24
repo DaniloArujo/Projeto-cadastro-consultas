@@ -57,4 +57,14 @@ public class MedicoController {
         return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
     }
 
-}
+    @PutMapping("/ativar/{id}")
+    @Transactional
+    public ResponseEntity ativar(@PathVariable Long id){
+        var medico = repository.getReferenceById(id);
+        medico.ativar();
+        return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
+    }
+
+};
+
+

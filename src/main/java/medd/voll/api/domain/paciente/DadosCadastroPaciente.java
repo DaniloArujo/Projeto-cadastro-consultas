@@ -2,7 +2,7 @@ package medd.voll.api.domain.paciente;
 
 import medd.voll.api.domain.endereco.DadosEndereco;
 
-public record DadosCadastroUsuario(
+public record DadosCadastroPaciente(
 
         String nome,
 

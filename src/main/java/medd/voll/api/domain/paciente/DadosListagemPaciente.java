@@ -1,6 +1,6 @@
 package medd.voll.api.domain.paciente;
 
-public record DadosListagemUsuario(
+public record DadosListagemPaciente(
         Long id,
         String nome,
         String email,
@@ -8,8 +8,8 @@ public record DadosListagemUsuario(
 
 ) {
 
-    public DadosListagemUsuario(Usuario usuario){
-        this(usuario.getId(), usuario.getNome(), usuario.getEmail(), usuario.getCpf());
+    public DadosListagemPaciente(Paciente paciente){
+        this(paciente.getId(), paciente.getNome(), paciente.getEmail(), paciente.getCpf());
     }
 
 }

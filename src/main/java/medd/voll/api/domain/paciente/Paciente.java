@@ -11,13 +11,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import medd.voll.api.domain.endereco.Endereco;
 
-@Table(name="usuarios")
-@Entity(name = "usuario")
+@Table(name="pacientes")
+@Entity(name = "paciente")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Usuario {
+public class Paciente {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,7 +40,7 @@ public class Usuario {
 
     private Boolean ativo;
 
-    public Usuario(DadosCadastroUsuario dados) {
+    public Paciente(DadosCadastroPaciente dados) {
 
         this.nome = dados.nome();
         this.email = dados.email();
@@ -51,7 +51,7 @@ public class Usuario {
 
     }
 
-    public void atualizarInformacoes(@Valid DadosAtualizaUsuario dados) {
+    public void atualizarInformacoes(@Valid DadosAtualizaPaciente dados) {
         if(dados.nome() != null){
             this.nome = dados.nome();
         }

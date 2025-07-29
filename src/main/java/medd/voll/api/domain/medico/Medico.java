@@ -62,5 +62,7 @@ public class Medico {
         this.ativo = false;
     }
 
-    public void ativar() { this.ativo = true; }
+    public void ativar() {
+        this.ativo = true;
+    }
 }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import medd.voll.api.domain.endereco.Endereco;
 
 @Table(name="medicos")
-@Entity(name = "medico")
+@Entity(name = "Medico")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

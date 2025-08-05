@@ -6,6 +6,7 @@ Esta documentação detalha a API Médica, que permite o gerenciamento de pacien
 
 ### Endpoints de documentação com swagger
 **GET /v3/api-docs**
+
 **GET /swagger-ui.html**
 
 ## Visão Geral da Aplicação

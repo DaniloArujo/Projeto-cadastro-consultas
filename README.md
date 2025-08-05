@@ -4,6 +4,10 @@
 
 Esta documentação detalha a API Médica, que permite o gerenciamento de pacientes, médicos e consultas, além de um sistema de autenticação robusto. A API foi desenvolvida para ser intuitiva e fácil de integrar, seguindo os princípios RESTful.
 
+### Endpoints de documentação com swagger
+**GET /v3/api-docs**
+**GET /swagger-ui.html**
+
 ## Visão Geral da Aplicação
 
 A API Médica é composta por diversos módulos, cada um responsável por uma área específica do sistema. Os principais módulos incluem:

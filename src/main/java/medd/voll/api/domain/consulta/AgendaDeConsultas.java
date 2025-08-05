@@ -1,7 +1,9 @@
 package medd.voll.api.domain.consulta;
 
+
 import medd.voll.api.domain.ValicacaoException;
 import medd.voll.api.domain.consulta.validacoes.agendamento.ValidadorAgendamentoDeConsulta;
+import medd.voll.api.domain.consulta.validacoes.cancelamento.ValidadorCancelamentoDeConsulta;
 import medd.voll.api.domain.medico.Medico;
 import medd.voll.api.domain.medico.MedicoRepository;
 import medd.voll.api.domain.paciente.PacienteRepository;
@@ -25,8 +27,10 @@ public class AgendaDeConsultas {
     @Autowired
     private List<ValidadorAgendamentoDeConsulta> validadores;
 
-    public DadosDetalhamentoConsulta  agendar(DadosAgendamentoConsulta dados){
+    @Autowired
+    private List<ValidadorCancelamentoDeConsulta> validadoresCancelamento;
 
+    public DadosDetalhamentoConsulta  agendar(DadosAgendamentoConsulta dados){
 
         if(!pacienteRepository.existsById(dados.idPaciente())){
             throw new ValicacaoException("Id do paciente informado não existe");
@@ -38,13 +42,27 @@ public class AgendaDeConsultas {
 
         validadores.forEach(v -> v.validar(dados));
 
-        var medico = escolherMedico(dados);
         var paciente = pacienteRepository.getReferenceById(dados.idPaciente());
-        var consulta = new Consulta(null, medico, paciente, dados.data());
+        var medico = escolherMedico(dados);
+        if (medico == null) {
+            throw new ValicacaoException("Não existe médico disponível nessa data!");
+        }
 
+        var consulta = new Consulta(null, medico, paciente, dados.data(), null);
         consultaRepository.save(consulta);
 
         return new DadosDetalhamentoConsulta(consulta);
+    }
+
+    public void cancelar(DadosCancelamentoConsulta dados) {
+        if (!consultaRepository.existsById(dados.idConsulta())) {
+            throw new ValicacaoException("Id da consulta informado não existe!");
+        }
+
+        validadoresCancelamento.forEach(v -> v.validar(dados));
+
+        var consulta = consultaRepository.getReferenceById(dados.idConsulta());
+        consulta.cancelar(dados.motivo());
     }
 
     private Medico escolherMedico(DadosAgendamentoConsulta dados) {
@@ -60,5 +78,6 @@ public class AgendaDeConsultas {
         return medicoRepository.escolherMedicoAleatorioLivreNaData(dados.especialidade(),dados.data());
 
     }
+
 
 }
